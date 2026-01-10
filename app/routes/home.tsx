@@ -1,5 +1,5 @@
+import { redirect } from "react-router";
 import type { Route } from "./+types/home";
-import { Welcome } from "../welcome/welcome";
 
 export function meta({}: Route.MetaArgs) {
   return [
@@ -7,7 +7,11 @@ export function meta({}: Route.MetaArgs) {
     { name: "description", content: "Welcome to React Router!" },
   ];
 }
+export async function clientLoader({ request }: Route.ClientActionArgs) {
+  const randomProductId = Math.floor(Math.random() * 19 + 1);
 
+  return redirect(`/landing/${randomProductId}`);
+}
 export default function Home() {
-  return <Welcome />;
+  return <></>;
 }
